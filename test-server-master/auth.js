@@ -40,10 +40,7 @@ router.get('/', function(req, res) {
           //   console.log(body);
           // });
 
-  		res.redirect('/' + 
-  			querystring.stringify({
-              access_token: access_token,
-  			}))
+  		res.json({access_token: access_token})
   	}
   })
 })

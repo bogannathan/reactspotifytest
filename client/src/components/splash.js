@@ -40,21 +40,21 @@ export default class Splash extends Component {
 		  .then((response) => response.json())
 		  .then(json => {
 		  	console.log(json)
-			const artist = json.artists.items[0];        
-			this.setState({ artist });
+			const artists = json.artists;        
+			this.setState({ artists });
 		  })
 	
 	  }
 
-	  artistDetails(){
-		if (this.state.artist){
-			console.log(this.state.artist);
-			return 
-			(<div>
-			<div> {this.renderItems(artist.name)}   </div>
-			<div> {artist.followers.total} </div>
-			<div> {artist.id}</div>
-			<div> {artist.genre}</div>
+	  artistsDetails(){
+		if (this.state.artists){
+			console.log(this.state.artists.items[0])
+			return (<div>
+			<div> {this.state.artists.items[0].name}   </div>
+			<div> {this.state.artists.items[0].followers.total} </div>
+			<div> {this.state.artists.items[0].id}</div>
+			<div> {this.state.artists.items[0].genres[0]}</div>
+			<div> {this.state.artists.items[0].images[0].url}</div>
 		  </div>
 		  )
 		}else{
@@ -92,7 +92,7 @@ export default class Splash extends Component {
 			  </div>
 			</div>
 			<hr />
-			{ this.artistDetails()}
+			{ this.artistsDetails()}
 	
 		
 		</div>

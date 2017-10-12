@@ -65,7 +65,7 @@ export default class Splash extends Component {
 	
 	  render() {
 
-		// let artist = {
+    // let artist = {
 		//   name: '',
 		//   followers: {
 		// 	total: ''

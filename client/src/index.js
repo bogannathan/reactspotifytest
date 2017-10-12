@@ -7,6 +7,7 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
 import Splash from './components/splash';
+import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers);

@@ -51,7 +51,8 @@ export default class Splash extends Component {
 		  name: '',
 		  followers: {
 			total: ''
-		  }
+		  },
+		  id: '',
 		};
 		if (this.state.artist !== null) {
 		  artist = this.state.artist;

@@ -86,15 +86,16 @@ export default class Splash extends Component {
 	  }
 	  search(accessToken) {
 		console.log('this.state', this.state);
+		console.log(accessToken)
 		const BASE_URL = 'https://api.spotify.com/v1/search?';
 		const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=artist&limit=1';
 		// var accessToken = 'BQDcdU24o1VHq6bPe94FqYoGNapAFOb5IlaIPkkrPDP3CGc9H5eHX_SMYUSRtwNg-BIgJ0AzCYWozxHL3BEbcQ'
 		// let accessToken = localStorage.getItem('accessToken')
-		let accessToken2 = 'AQBnDeIzQJSlzFpOgKjfFToKY7khWWbG45Hddm1GVPZpRTJ3rANtePI0z8hDbZ2LtIqI9qxYb9Yy6YUl'
+		// let accessToken2 = 'AQBnDeIzQJSlzFpOgKjfFToKY7khWWbG45Hddm1GVPZpRTJ3rANtePI0z8hDbZ2LtIqI9qxYb9Yy6YUl'
 		var myOptions = {
 		  method: 'GET',
 		  headers: {
-			'Authorization': 'Bearer ' + accessToken2
+			'Authorization': 'Bearer ' + accessToken
 		  },
 		  mode: 'cors',
 		  cache: 'default'
@@ -133,7 +134,7 @@ export default class Splash extends Component {
 				className="form-control" placeholder="Search for..." />
 				<span className="input-group-btn">
 				  <button 
-				  onClick={()=> this.search()}
+				  onClick={()=> this.auth()}
 				   className="btn btn-primary" type="button">Go!</button>
 				</span>
 			  </div>

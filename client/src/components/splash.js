@@ -54,7 +54,7 @@ export default class Splash extends Component {
 			<div> {this.state.artists.items[0].followers.total} </div>
 			<div> {this.state.artists.items[0].id}</div>
 			<div> {this.state.artists.items[0].genres[0]}</div>
-			<div> {this.state.artists.items[0].images[0].url}</div>
+			<img src={this.state.artists.items[0].images[0].url} style={{maxWidth: '100%'}} />
 		  </div>
 		  )
 		}else{

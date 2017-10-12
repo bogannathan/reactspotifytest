@@ -1,4 +1,4 @@
 module.exports = {
-	client_id: "4625fd59d3634a27ab6c9adedf1d163f",
-	client_secret: "5ff822075e1e447f9290edd378377d70"
+	client_id: "aa8ec733799e44379e12f414bd44fca4",
+	client_secret: "5b0c2059e4dd4929be704a3ca0130f87"
 }

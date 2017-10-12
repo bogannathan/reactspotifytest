@@ -2,15 +2,22 @@
 //file. It transforms any JSX code into vanilla JS. Output all into one
 //file where we specify. This takes this code and allows current browsers
 //to be able to read the JSX.
+require('webpack')
 
 module.exports = {
   entry: [
     './src/index.js'
   ],
   output: {
-    path: __dirname,
+    path: __dirname + '/dist',
     publicPath: '/',
     filename: 'bundle.js'
+  },
+  node: {
+    net: 'empty',
+    tls: 'empty', 
+    dns: 'empty',
+    fs: 'empty'
   },
   module: {
     loaders: [{
@@ -25,6 +32,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   devServer: {
+    inline: false,
     historyApiFallback: true,
     contentBase: './'
   }

@@ -26,7 +26,7 @@ export default class Splash extends Component {
 		console.log('this.state', this.state);
 		console.log(accessToken)
 		const BASE_URL = 'https://api.spotify.com/v1/search?';
-		const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=artist&limit=1';
+		const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=artist&limit=20';
 		var myOptions = {
 		  method: 'GET',
 		  headers: {
@@ -37,26 +37,43 @@ export default class Splash extends Component {
 		};
 	
 		fetch(FETCH_URL, myOptions)
-		  .then(response => response.json())
+		  .then((response) => response.json())
 		  .then(json => {
+		  	console.log(json)
 			const artist = json.artists.items[0];        
 			this.setState({ artist });
 		  })
 	
 	  }
+
+	  artistDetails(){
+		if (this.state.artist){
+			console.log(this.state.artist);
+			return 
+			(<div>
+			<div> {this.renderItems(artist.name)}   </div>
+			<div> {artist.followers.total} </div>
+			<div> {artist.id}</div>
+			<div> {artist.genre}</div>
+		  </div>
+		  )
+		}else{
+			return "nothing here"
+		}
+	}
+
 	
 	  render() {
 
-		let artist = {
-		  name: '',
-		  followers: {
-			total: ''
-		  },
-		  id: '',
-		};
-		if (this.state.artist !== null) {
-		  artist = this.state.artist;
-		}
+    // let artist = {
+		//   name: '',
+		//   followers: {
+		// 	total: ''
+		//   }
+		// };
+		// if (this.state.artist !== null) {
+		//   artist = this.state.artist;
+		// }
 	
 		return (
 			<Jumbotron>
@@ -75,10 +92,7 @@ export default class Splash extends Component {
 			  </div>
 			</div>
 			<hr />
-			<div>
-			  <div> {artist.name}   </div>
-			  <div> {artist.followers.total} </div>
-			</div>
+			{ this.artistDetails()}
 	
 		
 		</div>

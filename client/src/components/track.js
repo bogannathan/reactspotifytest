@@ -6,19 +6,19 @@ import {Jumbotron, Button} from 'react-bootstrap';
 
 
 
-export default class Splash extends Component {
+export default class Track extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 		  query: "", // my query
-		  artist: null  // my response.
+		  track: null  // my response.
 		}
 	  }
 	
 	  search() {
 		console.log('this.state', this.state);
 		const BASE_URL = 'https://api.spotify.com/v1/search?';
-		const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=artist&limit=1';
+		const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=track&limit=1';
 		var accessToken = 'BQArIP_FyoDZ8Rp3QLZGYkp1ABD1nrEzXOkVVfIO7lGrNfvyc9uL3XLeubbeKemMjfNoEO9q7Lnm5G5IBu-4ig'
 	
 		var myOptions = {
@@ -33,22 +33,19 @@ export default class Splash extends Component {
 		fetch(FETCH_URL, myOptions)
 		  .then(response => response.json())
 		  .then(json => {
-			const artist = json.artists.items[0];        
-			this.setState({ artist });
+			const track = json.tracks.items[0];        
+			this.setState({ track });
 		  })
 	
 	  }
 	
 	  render() {
 
-		let artist = {
-		  name: '',
-		  followers: {
-			total: ''
-		  }
+		let track = {
+		  name: ''
 		};
-		if (this.state.artist !== null) {
-		  artist = this.state.artist;
+		if (this.state.track !== null) {
+		  track = this.state.track;
 		}
 	
 		return (
@@ -70,8 +67,7 @@ export default class Splash extends Component {
 			</div>
 			<hr />
 			<div>
-			  <div> {artist.name}   </div>
-			  <div> {artist.followers.total} </div>
+			  <div> {track.name}   </div>
 			</div>
 	
 		
@@ -82,6 +78,3 @@ export default class Splash extends Component {
 	  }
 	
 	}
-
-
-

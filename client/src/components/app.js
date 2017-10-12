@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBarHeader from './nav';
-import Splash from './splash';
+import Artist from './splash';
 
 
 
@@ -10,7 +10,7 @@ import Splash from './splash';
             <div>
               <NavBarHeader />
               
-            {this.props.children || <Splash />}
+            {this.props.children || <Artist />}
             
             </div>
           );

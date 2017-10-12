@@ -18,7 +18,7 @@ export default class Splash extends Component {
 		 axios.get(`${ROOT_URL}`)
 	      .then((response) => {
 	        console.log("Response", response)
-	        this.search(response)
+	        this.search(response.data.access_token)
 			})
 	      console.log('more ????')
 	  }

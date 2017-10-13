@@ -96,7 +96,7 @@ export default class Splash extends Component {
 			return rows
 			// return rows
 		}else{
-			return "nothing here"
+			return ""
 		}
 	}
 	  render() {
@@ -112,30 +112,36 @@ export default class Splash extends Component {
 		// }
 		console.log('render test')
 		return (
-			<Jumbotron>
+		
 		  <div className="container">
+			
 				<div className="row">
-			<hr />
+				
+			<hr /><div className="col-xs-3"></div>
 			<div className="col-lg-6">
+			<h3 className="pageName">Search Artist</h3>
 			  <div className="input-group">
 				<input type="text" 
 				  onChange={event => { this.setState({ query: event.target.value }) }}
-				className="form-control" placeholder="Search for..." />
+				className="form-control" placeholder="Search for artist" />
 				<span className="input-group-btn">
 				  <button 
 				  onClick={()=> this.auth()}
-				   className="btn btn-primary" type="button">Go!</button> <Button className="btn btn-primary" href="/albumid">Albums</Button>
+				   className="btn btn-primary fun" type="button">Go!</button> 
+					 <Button className="btn btn-default" href="/albumid">Switch To Albums</Button>
 				</span>
 			  </div>
+		
 			</div>
+			<div className="col-xs-3"></div>
 			</div>
 			<hr />
-			<div className='row'>
+			<div className='row' id="back">
 			{ this.artistsDetails()}
 			</div>
 		
 		</div>
-		</Jumbotron>
+		
 		)
 		
 	  }

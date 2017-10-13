@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NavBarHeader from './nav';
 import Artist from './splash';
+import Albums from './albumid';
 
 
 
@@ -10,7 +11,7 @@ import Artist from './splash';
             <div>
               <NavBarHeader />
               
-            {this.props.children || <Artist />}
+            {this.props.children || <Albums />} 
             
             </div>
           );

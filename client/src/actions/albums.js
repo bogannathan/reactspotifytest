@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes';
-import SpotifyApi from '../constants/Spotifier';
+//import SpotifyApi from '../constants/Spotifier';
 
 export function getArtistAlbums(artistId) {
   return dispatch => {

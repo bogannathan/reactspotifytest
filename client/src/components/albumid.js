@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+
 import {Jumbotron, Button} from 'react-bootstrap';
 import axios from 'axios';
 
-class Albums extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      query: "", // my query
-      albums: null  // my response.
-    }
-  }
+export default class Albums extends Component {
+ constructor(props) {
+   super(props);
+   this.state = {
+     query: "", // my query
+     albums: null  // my response.
+   }
+ }
   auth() {
       const ROOT_URL = 'http://localhost:3000';
      console.log('!?!?!?!?')
@@ -24,7 +25,7 @@ class Albums extends Component {
     }
   search(accessToken) {
     console.log('this.state', this.state);
-    const BASE_URL = 'https://api.spotify.com/v1/search?'; 
+    const BASE_URL = 'https://api.spotify.com/v1/search?';
     const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=album&limit=20';
     var myOptions1 = {
       method: 'GET',
@@ -37,7 +38,7 @@ class Albums extends Component {
     fetch(FETCH_URL, myOptions1)
       .then(response => response.json())
       .then(json => {
-        const albums = json.albums;        
+        const albums = json.albums;
         this.setState({ albums });
       })
   }
@@ -64,7 +65,7 @@ class Albums extends Component {
             <img src={this.state.albums.items[i].images[0].url} style={{maxWidth: '140px'}} />
           }
           {!this.state.albums.items[i].images[0] &&
-            <div>No picture available :(</div>
+            <img src='../img/noimage.png' />
           }
           <br/>
           <br/>
@@ -79,35 +80,30 @@ class Albums extends Component {
 
   render() {
     return (
-      // return JSX 
       <div className="container">
-        <div className="row">
-          <hr />
-          <div className="col-xs-3"></div>
-      
-        <div className="col-lg-6">
-          <h3 className="pageName">Search Albums</h3>
-          <div className="input-group">
-            <input type="text" 
-              onChange={event => { this.setState({ query: event.target.value }) }}
-            className="form-control" placeholder="Search for albums" />
-           
-            <span className="input-group-btn">
-              <button 
-              onClick={()=> this.auth()}
-               className="btn btn-primary fun" type="button">Go!</button>			<Button className="btn btn-default" href="/splash">Switch to Artists</Button>
-            </span>
-          </div>
+       <div className="row">
+        <div className="col-md-2"></div>
+        <div className="col-xs-12 col-md-8">
+         <h3 className="pageName">Search Albums</h3>
+         <div className="input-group">
+          <input type="text"
+           onChange={event => { this.setState({ query: event.target.value }) }}
+           className="form-control" placeholder="Search for albums" />
+          <span className="input-group-btn">
+            <button
+             onClick={()=> this.auth()}
+             className="btn btn-primary fun" type="button">Go!</button>
+            <Button className="btn btn-default" href="/splash">Switch to Artists</Button>
+          </span>
+         </div>
         </div>
         <div className="col-xs-3"></div>
+       </div><hr/>
 
-    </div>
-    <hr/>
-        <div  className='row' id='back'>
-        {this.albumDetails()}
-        </div>  
+       <div  className='row back'>
+         {this.albumDetails()}
+       </div>
       </div>
     )
   }
 }
-export default Albums;

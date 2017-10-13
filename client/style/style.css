@@ -1,6 +1,8 @@
 body {
 	background-image: url("/img/music.jpeg");
 	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #splash{
@@ -12,7 +14,7 @@ body {
 	color: black;
 }
 
-#back{
+.back{
 	background-color:rgba(150,150,150,.8);
 }
 
@@ -24,3 +26,21 @@ body {
 
 .pageName{
 	color: white;
+}
+
+/*.fill {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.fill img {
+	flex-shrink: 0;
+	min-width: 100%;
+	min-height: 100%;
+}*/
+
+.fill img {
+	max-width: 140px;
+}

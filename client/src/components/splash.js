@@ -16,7 +16,7 @@ export default class Splash extends Component {
 		  query: "", // my query
 		  artist: null  // my response.
 		}
-	  }
+	}
 	  auth() {
 	  	const ROOT_URL = 'http://localhost:3000';
 		 console.log('????')
@@ -40,16 +40,16 @@ export default class Splash extends Component {
 		  mode: 'cors',
 		  cache: 'default'
 		};
-	
+
 		fetch(FETCH_URL, myOptions)
 		  .then((response) => response.json())
 		  .then(json => {
 		  	console.log('test ')
 		  	console.log(json)
-			const artists = json.artists;        
+			const artists = json.artists;
 			this.setState({ artists });
 		  })
-	
+
 	  }
 	  resetState() {
 	  	this.setState({
@@ -58,94 +58,67 @@ export default class Splash extends Component {
 		})
 	  }
 	  artistsDetails(){
-		if (this.state.artists){
-			console.log('test 2 ')
-			console.log(this.state.artists.items[0].name)
-			console.log('end test 2')
-			console.log(rows)
-			var rows = []
-			console.log(rows)
-			let artistImage = null
-			let totalArtists = this.state.artists.items.length
-			for (let i=0; i<totalArtists; i++){
-				{ rows.push(<div key={i} className='col-md-3 col-sm-6 col-xs-12'>
-					{this.state.artists.items[i].name &&
-						<div><h6><strong>Artist Name: </strong>{this.state.artists.items[i].name}  </h6>
-						</div>
-					}
-					{this.state.artists.items[i].followers &&
-						<div><h6><strong>Spotify Followers: </strong>{this.state.artists.items[i].followers.total}</h6>
-						</div>
-					}
-					{this.state.artists.items[i].genres[0] &&
-						<div> <h6><strong>Genre: </strong>{this.state.artists.items[i].genres[0]}</h6>
-						</div>
-					}
-					{this.state.artists.items[i].images[0] &&
-						<img src={this.state.artists.items[i].images[0].url} style={{maxWidth: '140px'}} />
-					}
-					{!this.state.artists.items[i].images[0] &&
-						<div>No picture available :(</div>
-					}
-					<br/>
-					<br/>
-				  </div>
-				  )}
-			}
-			console.log(rows)
-			return rows
-			// return rows
-		}else{
-			return ""
-		}
-	}
-	  render() {
+				if (this.state.artists){
 
-    // let artist = {
-		//   name: '',
-		//   followers: {
-		// 	total: ''
-		//   }
-		// };
-		// if (this.state.artist !== null) {
-		//   artist = this.state.artist;
-		// }
-		console.log('render test')
+					var rows = [] // must be a var instead of let to allow rows to be emptied for a new search later
+					let artistImage = null
+					let totalArtists = this.state.artists.items.length
+					for (let i=0; i<totalArtists; i++){
+						{rows.push(<div key={i} className='col-md-3 col-sm-4 col-xs-6 fill'>
+							{this.state.artists.items[i].name &&
+								<div><h6><strong>Artist Name: </strong>{this.state.artists.items[i].name}  </h6>
+								</div>
+							}
+							{this.state.artists.items[i].followers &&
+								<div><h6><strong>Spotify Followers: </strong>{this.state.artists.items[i].followers.total}</h6>
+								</div>
+							}
+							{this.state.artists.items[i].genres[0] &&
+								<div> <h6><strong>Genre: </strong>{this.state.artists.items[i].genres[0]}</h6>
+								</div>
+							}
+							{this.state.artists.items[i].images[0] &&
+								<div><img src={this.state.artists.items[i].images[0].url}  /></div>
+							}
+							{!this.state.artists.items[i].images[0] &&
+								<img src='../img/noimage.png' />
+							}
+							<br/>
+							<br/>
+						  </div>
+						)}
+					}
+					return rows
+				}else{
+					return ""
+				}
+	}
+	render() {
 		return (
-		
-		  <div className="container">
-			
-				<div className="row">
-				
-			<hr /><div className="col-xs-3"></div>
-			<div className="col-lg-6">
-			<h3 className="pageName">Search Artist</h3>
-			  <div className="input-group">
-				<input type="text" 
-				  onChange={event => { this.setState({ query: event.target.value }) }}
-				className="form-control" placeholder="Search for artist" />
-				<span className="input-group-btn">
-				  <button 
-				  onClick={()=> this.auth()}
-				   className="btn btn-primary fun" type="button">Go!</button> 
-					 <Button className="btn btn-default" href="/albumid">Switch To Albums</Button>
-				</span>
-			  </div>
-		
+		<div className="container">
+			<div className="row">
+				<div className="col-md-2"></div>
+				<div className="col-xs-12 col-md-8">
+					<h3 className="pageName">Search Artist</h3>
+					<div className="input-group">
+						<input type="text"
+						 onChange={event => { this.setState({ query: event.target.value }) }}
+							className="form-control" placeholder="Search for artist" />
+						<span className="input-group-btn">
+				  	<button
+				  		onClick={()=> this.auth()}
+				  		className="btn btn-primary fun" type="button">Go!</button>
+							<Button className="btn btn-default" href="/albumid">Switch To Albums</Button>
+						</span>
+					</div>
+				</div>
+				<div className="col-md-2"></div>
+			</div><hr />
+
+			<div className='row back'>
+				{this.artistsDetails()}
 			</div>
-			<div className="col-xs-3"></div>
-			</div>
-			<hr />
-			<div className='row' id="back">
-			{ this.artistsDetails()}
-			</div>
-		
 		</div>
-		
 		)
-		
-	  }
-	
 	}
-
-
+}

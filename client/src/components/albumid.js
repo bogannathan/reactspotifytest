@@ -81,21 +81,31 @@ class Albums extends Component {
     return (
       // return JSX 
       <div className="container">
-        <hr />
+        <div className="row">
+          <hr />
+          <div className="col-xs-3"></div>
+      
         <div className="col-lg-6">
+          <h3 className="pageName">Search Albums</h3>
           <div className="input-group">
             <input type="text" 
               onChange={event => { this.setState({ query: event.target.value }) }}
-            className="form-control" placeholder="Search for..." />
+            className="form-control" placeholder="Search for albums" />
+           
             <span className="input-group-btn">
               <button 
               onClick={()=> this.auth()}
-               className="btn btn-primary" type="button">Go!</button>			<Button className="btn btn-primary" href="/splash">Artists</Button>
+               className="btn btn-primary fun" type="button">Go!</button>			<Button className="btn btn-default" href="/splash">Switch to Artists</Button>
             </span>
           </div>
         </div>
-        <hr />
-        <div>{this.albumDetails()}</div>  
+        <div className="col-xs-3"></div>
+
+    </div>
+    <hr/>
+        <div  className='row' id='back'>
+        {this.albumDetails()}
+        </div>  
       </div>
     )
   }

@@ -1,24 +1,25 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import {Jumbotron, Button} from 'react-bootstrap';
-import axios from 'axios';
+//SET UP
+import React, {Component} from 'react'; //create component
+import { connect } from 'react-redux'; //connects components to redux store
+import { Link } from 'react-router'; //allows for easy routing
+import {Jumbotron, Button} from 'react-bootstrap'; //Bootstrap Jumbotron component & button classes 
+import axios from 'axios'; //sends our Spotify API requests 
 
 export default class Artists extends Component {
-	constructor(props) {
+	constructor(props) { //Initializes props within Artists class
 		super(props);
-		this.state = {
+		this.state = { //sets initial state
 		  query: "", // my query
 		  artist: null  // my response.
 		}
 		this.auth = this.auth.bind(this)
 	}
-	_handleKeyPress(e) {
+	_handleKeyPress(e) { //Allows "Go!" button to be clicked with the enter key
 		if (e.key === 'Enter') {
 			this.auth()
 		}
 	}
-	  auth() {
+	  auth() { //sets up and sends get request for access token
 	  	const ROOT_URL = 'http://localhost:3000';
 		 console.log('????')
 		 axios.get(`${ROOT_URL}`)
@@ -28,21 +29,21 @@ export default class Artists extends Component {
 			})
 	      console.log('more ????')
 	  }
-	  search(accessToken) {
+	  search(accessToken) { //searches for artists
 		console.log('this.state', this.state);
 		console.log(accessToken)
 		const BASE_URL = 'https://api.spotify.com/v1/search?';
 		const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=artist&limit=20';
 		var myOptions = {
 		  method: 'GET',
-		  headers: {
+		  headers: { //Authorization headers required for search
 			'Authorization': 'Bearer ' + accessToken
 		  },
 		  mode: 'cors',
 		  cache: 'default'
 		};
 
-		fetch(FETCH_URL, myOptions)
+		fetch(FETCH_URL, myOptions) //fetches data with concatenated url and required headers to return artists
 		  .then((response) => response.json())
 		  .then(json => {
 		  	console.log('test ')
@@ -52,13 +53,13 @@ export default class Artists extends Component {
 		  })
 
 	  }
-	  resetState() {
+	  resetState() { //resets to initial state
 	  	this.setState({
 		  query: "", // my query
 		  artists: null  // my response.
 		})
 	  }
-	  artistsDetails(){
+	  artistsDetails(){ //contains the data of search results
 				if (this.state.artists){
 
 					var rows = [] // must be a var instead of let to allow rows to be emptied for a new search later
@@ -94,7 +95,7 @@ export default class Artists extends Component {
 					return ""
 				}
 	}
-	render() {
+	render() {	//renders search results
 		return (
 		<div className="container">
 			<div className="row">

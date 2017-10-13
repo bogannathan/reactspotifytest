@@ -8,7 +8,7 @@ import axios from 'axios'; //sends our Spotify API requests
 export default class Albums extends Component {
  constructor(props) {     //Initializes props within Albums class
    super(props);
-   this.state = {
+   this.state = {  //sets initial state
      query: "", // my query
      albums: null  // my response.
    }
@@ -18,7 +18,7 @@ export default class Albums extends Component {
       this.auth()
     }
   }  
-  auth() { //get request for access token
+  auth() { //sets up and sends get request for access token
       const ROOT_URL = 'http://localhost:3000';
      console.log('!?!?!?!?')
      axios.get(`${ROOT_URL}`)
@@ -34,29 +34,29 @@ export default class Albums extends Component {
     const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=album&limit=20';
     var myOptions1 = {
       method: 'GET',  
-      headers: {    //get request with authorization headers
+      headers: {    //Authorization headers required for search
         'Authorization': 'Bearer ' + accessToken
       },
       mode: 'cors',
       cache: 'default'
     };
-    fetch(FETCH_URL, myOptions1)
+    fetch(FETCH_URL, myOptions1) //fetches data with concatenated url and required headers to return albums
       .then(response => response.json())  
       .then(json => {
         const albums = json.albums;
         this.setState({ albums });
       })
   }
-  resetState() {  
+  resetState() {  //resets to initial state
       this.setState({
       query: "", // my query
       artists: null  // my response.
     })
   }
-  albumDetails(){ //contains the search results
+  albumDetails(){ //contains the data of search results
     if (this.state.albums){
       console.log(this.state.albums);
-      var rows = []
+      var rows = []  // must be a var instead of let to allow rows to be emptied for a new search later
       let albumImage = null
       let totalAlbums = this.state.albums.items.length
       for (let i=0; i<totalAlbums; i++){

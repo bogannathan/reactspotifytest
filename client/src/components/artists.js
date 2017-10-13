@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import {Jumbotron, Button} from 'react-bootstrap';
 import axios from 'axios';
 
-export default class Splash extends Component {
+export default class Artists extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -12,10 +12,6 @@ export default class Splash extends Component {
 		  artist: null  // my response.
 		}
 		this.auth = this.auth.bind(this)
-		const baseState = {
-		  query: "", // my query
-		  artist: null  // my response.
-		}
 	}
 	_handleKeyPress(e) {
 		if (e.key === 'Enter') {

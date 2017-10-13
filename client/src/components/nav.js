@@ -10,27 +10,16 @@ class NavBarHeader extends Component {
 
 	render() {
 		return (
-			<div>
-			  <Navbar inverse collapseOnSelect>
-			    <Navbar.Header>
-			      <Navbar.Brand>
-			        <a href="/home">Music Choice</a>
-			      </Navbar.Brand>
-			      <Navbar.Toggle />
-			    </Navbar.Header>
-			      <Nav pullRight >
-				    <Navbar.Collapse>
-				      <Navbar.Form pullLeft>
-				        <FormGroup>
-				          <FormControl type="text" placeholder="Search" />
-				        </FormGroup>
-				        {' '}
-				        <Button type="submit">Submit</Button>
-				      </Navbar.Form>
-				    </Navbar.Collapse>
-					</Nav>			 
-				</Navbar>
-			</div>
+	
+			<Navbar inverse collapseOnSelect>
+          <Navbar.Header>
+            <Navbar.Brand>
+            <p>Search Spotify</p>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          </Navbar>
+			
 		);
 	}
 }

@@ -2,3 +2,12 @@ body {
 	background-image: url("/img/music.jpeg");
 	background-size: cover;
 }
+
+#splash{
+	background-color: rgba(150,150,150,.4);
+	border: 1px solid black;
+}
+
+.list{
+	color: black;
+}

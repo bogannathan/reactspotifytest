@@ -13,6 +13,11 @@ export default class Albums extends Component {
      albums: null  // my response.
    }
  }
+  _handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.auth()
+    }
+  }  
   auth() {
       const ROOT_URL = 'http://localhost:3000';
      console.log('!?!?!?!?')
@@ -23,11 +28,6 @@ export default class Albums extends Component {
       })
         console.log('more !?!?!?!?');
     }
-      _handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.auth()
-    }
-  }
   search(accessToken) {
     console.log('this.state', this.state);
     const BASE_URL = 'https://api.spotify.com/v1/search?';
@@ -104,7 +104,7 @@ export default class Albums extends Component {
             <button
              onClick={()=> this.auth()}
              className="btn btn-primary fun" type="button">Go!</button>
-            <Button className="btn btn-default" href="/splash">Switch to Artists</Button>
+            <Button className="btn btn-default" href="/artists">Switch to Artists</Button>
           </span>
          </div>
         </div>

@@ -1,5 +1,5 @@
 //SET UP
-import React from 'react'; //React 
+import React from 'react';
 import ReactDOM from 'react-dom'; //Allows components to be rendered in the DOM
 import { Provider } from 'react-redux'; //Highest order component; allows for binding Redux to React
 import { createStore, applyMiddleware } from 'redux'; //createStore- creates Redux store which holds app's total state
@@ -8,8 +8,8 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router'; //reac
 import reduxThunk from 'redux-thunk'; //allows action creators that return functions instead of actions
 
 //IMPORT COMPONENTS & REDUCERS
-import App from './components/app'; 
-import Splash from './components/splash';
+import App from './components/app';
+import Artists from './components/artists';
 import Albums from './components/albumid';
 import reducers from './reducers';
 
@@ -26,7 +26,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
 
             <Route path="albumid" component={Albums} />     
-            <Route path="splash" component={Splash} />
+            <Route path="artists" component={Artists} />
 
         </Route>
       </Router>

@@ -23,6 +23,11 @@ export default class Albums extends Component {
       })
         console.log('more !?!?!?!?');
     }
+      _handleKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.auth()
+    }
+  }
   search(accessToken) {
     console.log('this.state', this.state);
     const BASE_URL = 'https://api.spotify.com/v1/search?';
@@ -88,7 +93,8 @@ export default class Albums extends Component {
          <div className="input-group">
           <input type="text"
            onChange={event => { this.setState({ query: event.target.value }) }}
-           className="form-control" placeholder="Search for albums" />
+           className="form-control" placeholder="Search for albums"
+            onKeyPress={this._handleKeyPress.bind(this)} />
           <span className="input-group-btn">
             <button
              onClick={()=> this.auth()}

@@ -12,9 +12,15 @@ export default class Splash extends Component {
 		  query: "", // my query
 		  artist: null  // my response.
 		}
+		this.auth = this.auth.bind(this)
 		const baseState = {
 		  query: "", // my query
 		  artist: null  // my response.
+		}
+	}
+	_handleKeyPress(e) {
+		if (e.key === 'Enter') {
+			this.auth()
 		}
 	}
 	  auth() {
@@ -103,7 +109,8 @@ export default class Splash extends Component {
 					<div className="input-group">
 						<input type="text"
 						 onChange={event => { this.setState({ query: event.target.value }) }}
-							className="form-control" placeholder="Search for artist" />
+							className="form-control" placeholder="Search for artist"
+							onKeyPress={this._handleKeyPress.bind(this)} />
 						<span className="input-group-btn">
 				  	<button
 				  		onClick={()=> this.auth()}

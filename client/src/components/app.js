@@ -10,8 +10,9 @@ import Albums from './albumid';
           return (
             <div>
               <NavBarHeader />
-              
-            {this.props.children || <Artist />}
+             
+            {this.props.children || <Albums />} 
+
             </div>
             
           );

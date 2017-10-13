@@ -7,7 +7,10 @@ import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
 import Splash from './components/splash';
+
 import Albums from './components/albumid';
+
+
 import reducers from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
@@ -20,8 +23,9 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
     <Router history={browserHistory}>
         <Route path="/" component={App}>
-            <Route path="albumid" component={Albums}>
-            <Route path="home" component={Splash} />     
+
+            <Route path="home" component={Albums} />     
+
         </Route>
       </Router>
   </Provider>

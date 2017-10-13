@@ -1,24 +1,24 @@
 //SET UP
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import {Jumbotron, Button} from 'react-bootstrap';
-import axios from 'axios';
+import React, {Component} from 'react'; //we are creating a component
+import { connect } from 'react-redux'; //connects components to redux store
+import { Link } from 'react-router'; //Fully accessible anchor tag...allows for easy routing 
+import {Jumbotron, Button} from 'react-bootstrap'; //Allows bootstrap Jumbotron component & button classes 
+import axios from 'axios'; //sends our Spotify API requests 
 
 export default class Albums extends Component {
- constructor(props) {
+ constructor(props) {     //Initializes props within Albums class
    super(props);
    this.state = {
      query: "", // my query
      albums: null  // my response.
    }
  }
-  _handleKeyPress(e) {
+  _handleKeyPress(e) { //Allows "Go!" button to be clicked with the enter key
     if (e.key === 'Enter') {
       this.auth()
     }
   }  
-  auth() {
+  auth() { //get request for access token
       const ROOT_URL = 'http://localhost:3000';
      console.log('!?!?!?!?')
      axios.get(`${ROOT_URL}`)
@@ -28,32 +28,32 @@ export default class Albums extends Component {
       })
         console.log('more !?!?!?!?');
     }
-  search(accessToken) {
+  search(accessToken) { //search for albums
     console.log('this.state', this.state);
     const BASE_URL = 'https://api.spotify.com/v1/search?';
     const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=album&limit=20';
     var myOptions1 = {
-      method: 'GET',
-      headers: {
+      method: 'GET',  
+      headers: {    //get request with authorization headers
         'Authorization': 'Bearer ' + accessToken
       },
       mode: 'cors',
       cache: 'default'
     };
     fetch(FETCH_URL, myOptions1)
-      .then(response => response.json())
+      .then(response => response.json())  
       .then(json => {
         const albums = json.albums;
         this.setState({ albums });
       })
   }
-  resetState() {
+  resetState() {  
       this.setState({
       query: "", // my query
       artists: null  // my response.
     })
   }
-  albumDetails(){
+  albumDetails(){ //contains the search results
     if (this.state.albums){
       console.log(this.state.albums);
       var rows = []
@@ -88,7 +88,7 @@ export default class Albums extends Component {
     }
   }
 
-  render() {
+  render() {  //renders our JSX
     return (
       <div className="container">
        <div className="row">

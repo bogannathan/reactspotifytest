@@ -5,14 +5,13 @@ let querystring  = require('querystring'); //Allows server to parse & stringify 
 let cookieParser = require('cookie-parser'); //Parses cookie headers
 let router = require('express').Router(); //express router recieves requests
 
-
 router.get('/', function(req, res) {
-  const config = require("./config.js")
-  const spotifyUrl = "https://api.spotify.com/v1/search?query=album:"
-  const spotifyAuth = "https://accounts.spotify.com/api/token"
-  const ROOT_URL = "http://localhost:8080"
+  const config = require("./config.js");
+  const spotifyUrl = "https://api.spotify.com/v1/search?query=album:";
+  const spotifyAuth = "https://accounts.spotify.com/api/token";
+  const ROOT_URL = "http://localhost:8080";
 
-  let redirect_uri = 'http://localhost:8080/callback'
+  let redirect_uri = 'http://localhost:8080/callback';
   let authOptions = {      //authOptions contains Spotify's required body params for authorization requests
     url: 'https://accounts.spotify.com/api/token',    
     form: {                                       
@@ -25,26 +24,13 @@ router.get('/', function(req, res) {
     },
     json: true
   };
-  console.log('test')
-  request.post(authOptions, function(error, response, body) {
-    console.log('test 2')
-    console.log('response' + Object.keys(response))
-    console.log('body' + Object.keys(body))
-    console.log('err' + error)
-    console.log('statusCode' + response.statusCode)
-    console.log('bodyerror' + body.error)
-    console.log('bodytoken ' + body.access_token)
-  	if (!error && response.statusCode === 200) {
-      console.log('test 3')
-  		let access_token = body.access_token;
-  		//log body to console
-          // request.get(options, function(error, response, body) {
-          //   console.log(body);
-          // });
 
-  		res.json({access_token: access_token})
+  request.post(authOptions, function(error, response, body) {
+  	if (!error && response.statusCode === 200) {
+  		let access_token = body.access_token;
+  		res.json({access_token: access_token});
   	}
-  })
-})
+  });
+});
 
 module.exports = router;

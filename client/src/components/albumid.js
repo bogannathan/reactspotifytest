@@ -1,19 +1,24 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-
-import {Jumbotron, Button} from 'react-bootstrap';
-import axios from 'axios';
+//SET UP
+import React, {Component} from 'react'; //we are creating a component
+import { connect } from 'react-redux'; //connects components to redux store
+import { Link } from 'react-router'; //Fully accessible anchor tag...allows for easy routing 
+import {Jumbotron, Button} from 'react-bootstrap'; //Allows bootstrap Jumbotron component & button classes 
+import axios from 'axios'; //sends our Spotify API requests 
 
 export default class Albums extends Component {
- constructor(props) {
+ constructor(props) {     //Initializes props within Albums class
    super(props);
-   this.state = {
+   this.state = {  //sets initial state
      query: "", // my query
      albums: null  // my response.
    }
  }
-  auth() {
+  _handleKeyPress(e) { //Allows "Go!" button to be clicked with the enter key
+    if (e.key === 'Enter') {
+      this.auth()
+    }
+  }  
+  auth() { //sets up and sends get request for access token
       const ROOT_URL = 'http://localhost:3000';
      console.log('!?!?!?!?')
      axios.get(`${ROOT_URL}`)
@@ -23,40 +28,35 @@ export default class Albums extends Component {
       })
         console.log('more !?!?!?!?');
     }
-      _handleKeyPress(e) {
-    if (e.key === 'Enter') {
-      this.auth()
-    }
-  }
-  search(accessToken) {
+  search(accessToken) { //search for albums
     console.log('this.state', this.state);
     const BASE_URL = 'https://api.spotify.com/v1/search?';
     const FETCH_URL = BASE_URL + 'q=' + this.state.query + '&type=album&limit=20';
     var myOptions1 = {
-      method: 'GET',
-      headers: {
+      method: 'GET',  
+      headers: {    //Authorization headers required for search
         'Authorization': 'Bearer ' + accessToken
       },
       mode: 'cors',
       cache: 'default'
     };
-    fetch(FETCH_URL, myOptions1)
-      .then(response => response.json())
+    fetch(FETCH_URL, myOptions1) //fetches data with concatenated url and required headers to return albums
+      .then(response => response.json())  
       .then(json => {
         const albums = json.albums;
         this.setState({ albums });
       })
   }
-  resetState() {
+  resetState() {  //resets to initial state
       this.setState({
       query: "", // my query
       artists: null  // my response.
     })
   }
-  albumDetails(){
+  albumDetails(){ //contains the data of search results
     if (this.state.albums){
       console.log(this.state.albums);
-      var rows = []
+      var rows = []  // must be a var instead of let to allow rows to be emptied for a new search later
       let albumImage = null
       let totalAlbums = this.state.albums.items.length
       for (let i=0; i<totalAlbums; i++){
@@ -88,7 +88,7 @@ export default class Albums extends Component {
     }
   }
 
-  render() {
+  render() {  //renders our JSX
     return (
       <div className="container">
        <div className="row">
@@ -104,7 +104,7 @@ export default class Albums extends Component {
             <button
              onClick={()=> this.auth()}
              className="btn btn-primary fun" type="button">Go!</button>
-            <Button className="btn btn-default" href="/splash">Switch to Artists</Button>
+            <Button className="btn btn-default" href="/artists">Switch to Artists</Button>
           </span>
          </div>
         </div>

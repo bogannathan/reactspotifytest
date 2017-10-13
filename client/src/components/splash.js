@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+
 import {Jumbotron, Button} from 'react-bootstrap';
 import axios from 'axios';
 
@@ -8,6 +9,10 @@ export default class Splash extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+		  query: "", // my query
+		  artist: null  // my response.
+		}
+		const baseState = {
 		  query: "", // my query
 		  artist: null  // my response.
 		}
@@ -39,30 +44,61 @@ export default class Splash extends Component {
 		fetch(FETCH_URL, myOptions)
 		  .then((response) => response.json())
 		  .then(json => {
+		  	console.log('test ')
 		  	console.log(json)
 			const artists = json.artists;        
 			this.setState({ artists });
 		  })
 	
 	  }
-
+	  resetState() {
+	  	this.setState({
+		  query: "", // my query
+		  artists: null  // my response.
+		})
+	  }
 	  artistsDetails(){
 		if (this.state.artists){
-			console.log(this.state.artists.items[0])
-			return (<div>
-			<div> {this.state.artists.items[0].name}   </div>
-			<div> {this.state.artists.items[0].followers.total} </div>
-			<div> {this.state.artists.items[0].id}</div>
-			<div> {this.state.artists.items[0].genres[0]}</div>
-			<img src={this.state.artists.items[0].images[0].url} style={{maxWidth: '100%'}} />
-		  </div>
-		  )
+			console.log('test 2 ')
+			console.log(this.state.artists.items[0].name)
+			console.log('end test 2')
+			console.log(rows)
+			var rows = []
+			console.log(rows)
+			let artistImage = null
+			let totalArtists = this.state.artists.items.length
+			for (let i=0; i<totalArtists; i++){
+				{ rows.push(<div key={i} className='col-md-3 col-sm-6 col-xs-12'>
+					{this.state.artists.items[i].name &&
+						<div><h6><strong>Artist Name: </strong>{this.state.artists.items[i].name}  </h6>
+						</div>
+					}
+					{this.state.artists.items[i].followers &&
+						<div><h6><strong>Spotify Followers: </strong>{this.state.artists.items[i].followers.total}</h6>
+						</div>
+					}
+					{this.state.artists.items[i].genres[0] &&
+						<div> <h6><strong>Genre: </strong>{this.state.artists.items[i].genres[0]}</h6>
+						</div>
+					}
+					{this.state.artists.items[i].images[0] &&
+						<img src={this.state.artists.items[i].images[0].url} style={{maxWidth: '140px'}} />
+					}
+					{!this.state.artists.items[i].images[0] &&
+						<div>No picture available :(</div>
+					}
+					<br/>
+					<br/>
+				  </div>
+				  )}
+			}
+			console.log(rows)
+			return rows
+			// return rows
 		}else{
 			return "nothing here"
 		}
 	}
-
-	
 	  render() {
 
     // let artist = {
@@ -74,10 +110,11 @@ export default class Splash extends Component {
 		// if (this.state.artist !== null) {
 		//   artist = this.state.artist;
 		// }
-	
+		console.log('render test')
 		return (
 			<Jumbotron>
 		  <div className="container">
+				<div className="row">
 			<hr />
 			<div className="col-lg-6">
 			  <div className="input-group">
@@ -91,9 +128,11 @@ export default class Splash extends Component {
 				</span>
 			  </div>
 			</div>
+			</div>
 			<hr />
+			<div className='row'>
 			{ this.artistsDetails()}
-	
+			</div>
 		
 		</div>
 		</Jumbotron>
@@ -102,6 +141,5 @@ export default class Splash extends Component {
 	  }
 	
 	}
-
 
 

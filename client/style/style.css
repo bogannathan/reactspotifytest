@@ -2,3 +2,25 @@ body {
 	background-image: url("/img/music.jpeg");
 	background-size: cover;
 }
+
+#splash{
+	background-color: 
+	border: 1px solid black;
+}
+
+.list{
+	color: black;
+}
+
+#back{
+	background-color:rgba(150,150,150,.8);
+}
+
+.fun{
+	
+	margin-right: 4px;
+	
+}
+
+.pageName{
+	color: white;

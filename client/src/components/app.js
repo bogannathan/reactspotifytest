@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBarHeader from './nav';
-import Artist from './splash';
+import Artist from './artists';
 import Albums from './albumid';
 
 

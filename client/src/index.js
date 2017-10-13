@@ -6,7 +6,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import reduxThunk from 'redux-thunk';
 
 import App from './components/app';
-import Splash from './components/splash';
+import Artists from './components/artists';
 
 import Albums from './components/albumid';
 
@@ -25,7 +25,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
 
             <Route path="albumid" component={Albums} />     
-            <Route path="splash" component={Splash} />
+            <Route path="artists" component={Artists} />
 
         </Route>
       </Router>

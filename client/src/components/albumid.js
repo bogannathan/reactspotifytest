@@ -47,11 +47,16 @@ export default class Albums extends Component {
         this.setState({ albums });
       })
   }
+  resetState() {
+      this.setState({
+      query: "", // my query
+      artists: null  // my response.
+    })
+  }
   albumDetails(){
     if (this.state.albums){
       console.log(this.state.albums);
       var rows = []
-      console.log(rows)
       let albumImage = null
       let totalAlbums = this.state.albums.items.length
       for (let i=0; i<totalAlbums; i++){

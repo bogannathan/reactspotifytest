@@ -1,6 +1,8 @@
 body {
 	background-image: url("/img/music.jpeg");
 	background-size: cover;
+	background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 #splash{
@@ -12,7 +14,7 @@ body {
 	color: black;
 }
 
-#back{
+.back{
 	background-color:rgba(150,150,150,.8);
 }
 
@@ -24,3 +26,16 @@ body {
 
 .pageName{
 	color: white;
+}
+
+.fill img {
+	max-width: 140px;
+}
+
+#searchHeader {
+	color: inherit;
+}
+#searchHeader:hover {
+	cursor: pointer;
+	text-decoration:none
+}

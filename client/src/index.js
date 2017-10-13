@@ -24,7 +24,8 @@ ReactDOM.render(
     <Router history={browserHistory}>
         <Route path="/" component={App}>
 
-            <Route path="home" component={Albums} />     
+            <Route path="albumid" component={Albums} />     
+            <Route path="splash" component={Splash} />
 
         </Route>
       </Router>

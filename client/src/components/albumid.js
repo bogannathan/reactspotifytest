@@ -90,7 +90,7 @@ class Albums extends Component {
             <span className="input-group-btn">
               <button 
               onClick={()=> this.auth()}
-               className="btn btn-primary" type="button">Go!</button>
+               className="btn btn-primary" type="button">Go!</button>			<Button className="btn btn-primary" href="/splash">Artists</Button>
             </span>
           </div>
         </div>

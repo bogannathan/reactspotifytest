@@ -16,7 +16,7 @@
     "babel-preset-react": "^6.1.18",
     "json-loader": "^0.5.7",
     "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.5"
+    "webpack-dev-server": "^3.1.11"
   },
   "dependencies": {
     "axios": "^0.16.2",
